@@ -15,7 +15,7 @@ class AverageSpeedMetric extends Metric
         return $elapsedTime > 0 ? ($totalDistance / $elapsedTime) * 3.6 : 0;
     }
 
-    public function loadDependencies()
+    protected function loadDependencies()
     {
         return array(
             'elapsedTime' => new ElapsedTimeMetric(),

@@ -17,7 +17,7 @@ class HeartRateTSSMetric extends Metric
         return round($tss);
     }
 
-    public function loadDependencies()
+    protected function loadDependencies()
     {
         $metrics = array();
         foreach (array_keys($this->getZoneMultipliers()) as $zone) {

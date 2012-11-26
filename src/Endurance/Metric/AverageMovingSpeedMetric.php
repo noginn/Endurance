@@ -15,7 +15,7 @@ class AverageMovingSpeedMetric extends Metric
         return $movingTime > 0 ? ($totalDistance / $movingTime) * 3.6 : 0;
     }
 
-    public function loadDependencies()
+    protected function loadDependencies()
     {
         return array(
             'movingTime' => new MovingTimeMetric(),

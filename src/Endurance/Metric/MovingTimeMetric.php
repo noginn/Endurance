@@ -23,7 +23,7 @@ class MovingTimeMetric extends Metric
         return $movingTime;
     }
 
-    public function loadDependencies()
+    protected function loadDependencies()
     {
         return array(
             'elapsedTime' => new ElapsedTimeMetric()

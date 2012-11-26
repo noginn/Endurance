@@ -25,7 +25,7 @@ abstract class Metric
         return sha1(get_class($this) . '(' . json_encode($this->options, JSON_FORCE_OBJECT) . ')');
     }
 
-    public function loadDependencies()
+    protected function loadDependencies()
     {
         return array();
     }
