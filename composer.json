@@ -1,0 +1,19 @@
+{
+    "name": "noginn/endurance",
+    "type": "library",
+    "description": "PHP library for parsing cycling GPS activities and calculating metrics.",
+    "keywords": ["cycling", "training", "gps", "garmin"],
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tom Graham"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "autoload": {
+        "psr-0": { "Endurance": "src/" }
+    }
+}
