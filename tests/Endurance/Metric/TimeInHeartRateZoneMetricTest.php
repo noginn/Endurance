@@ -24,6 +24,11 @@ class TimeInHeartRateZoneMetricTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $this->metric->calculate(array(), $this->zones, array()));
     }
 
+    public function testCalculateReturnsCorrectValue()
+    {
+        $this->assertEquals(55, $this->metric->calculate($this->createPoints(range(100,200)), $this->zones, array()));
+    }
+
     private function createPoints(array $heartRates)
     {
         $points = array();
