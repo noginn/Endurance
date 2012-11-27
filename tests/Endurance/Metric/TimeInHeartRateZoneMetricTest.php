@@ -2,30 +2,26 @@
 
 namespace Endurance\Metric;
 
+use Endurance\HeartRateZone;
 use Endurance\HeartRateZones;
 use Endurance\Metric;
 use Endurance\Point;
 
-class AverageHeartRateMetricTest extends \PHPUnit_Framework_TestCase
+class TimeInHeartRateZoneMetricTest extends \PHPUnit_Framework_TestCase
 {
     public $metric;
 
     public function setUp()
     {
-        $this->metric = new AverageHeartRateMetric();
-        $this->zones = new HeartRateZones(array());
+        $this->metric = new TimeInHeartRateZoneMetric(array('zone' => 'Z1'));
+        $this->zones = new HeartRateZones(array(
+            new HeartRateZone('Z1', 'Active recovery', 120, 130)
+        ));
     }
 
-    public function testCalculateReturnsZeroWhenNoPoints()
+    public function testCalculateReturnsZeroWithNoPoints()
     {
         $this->assertEquals(0, $this->metric->calculate(array(), $this->zones, array()));
-    }
-    
-    public function testCalculateReturnsCorrectValue()
-    {
-        $points = $this->createPoints(range(100,200));
-
-        $this->assertEquals(150, $this->metric->calculate($points, $this->zones, array()));
     }
 
     private function createPoints(array $heartRates)

@@ -6,26 +6,24 @@ use Endurance\HeartRateZones;
 use Endurance\Metric;
 use Endurance\Point;
 
-class AverageHeartRateMetricTest extends \PHPUnit_Framework_TestCase
+class MaximumHeartRateMetricTest extends \PHPUnit_Framework_TestCase
 {
     public $metric;
 
     public function setUp()
     {
-        $this->metric = new AverageHeartRateMetric();
+        $this->metric = new MaximumHeartRateMetric();
         $this->zones = new HeartRateZones(array());
     }
 
-    public function testCalculateReturnsZeroWhenNoPoints()
+    public function testCalculateReturnsZeroWithNoPoints()
     {
         $this->assertEquals(0, $this->metric->calculate(array(), $this->zones, array()));
     }
     
     public function testCalculateReturnsCorrectValue()
     {
-        $points = $this->createPoints(range(100,200));
-
-        $this->assertEquals(150, $this->metric->calculate($points, $this->zones, array()));
+        $this->assertEquals(100, $this->metric->calculate($this->createPoints(range(0,100)), $this->zones, array()));
     }
 
     private function createPoints(array $heartRates)

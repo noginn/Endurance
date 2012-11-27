@@ -11,6 +11,11 @@ class TimeInHeartRateZoneMetric extends Metric
     {
         $zone = $zones->getZone($this->options['zone']);
 
+        $count = count($points);
+        if ($count < 2) {
+            return 0;
+        }
+
         $seconds = 0;
         $indexes = array_keys($points);
         $lastIndex = $indexes[count($points) - 1];

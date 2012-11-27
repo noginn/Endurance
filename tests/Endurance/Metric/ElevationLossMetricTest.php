@@ -6,35 +6,34 @@ use Endurance\HeartRateZones;
 use Endurance\Metric;
 use Endurance\Point;
 
-class AverageHeartRateMetricTest extends \PHPUnit_Framework_TestCase
+class ElevationLossMetricTest extends \PHPUnit_Framework_TestCase
 {
     public $metric;
 
     public function setUp()
     {
-        $this->metric = new AverageHeartRateMetric();
+        $this->metric = new ElevationLossMetric();
         $this->zones = new HeartRateZones(array());
     }
 
-    public function testCalculateReturnsZeroWhenNoPoints()
+    public function testCalculateReturnsZeroWithNoPoints()
     {
         $this->assertEquals(0, $this->metric->calculate(array(), $this->zones, array()));
     }
     
     public function testCalculateReturnsCorrectValue()
     {
-        $points = $this->createPoints(range(100,200));
-
-        $this->assertEquals(150, $this->metric->calculate($points, $this->zones, array()));
+        // Down 100m, up 100m and down 100m again
+        $this->assertEquals(200, $this->metric->calculate($this->createPoints(array_merge(range(100,0), range(0,100), range(100,0))), $this->zones, array()));
     }
 
-    private function createPoints(array $heartRates)
+    private function createPoints(array $elevations)
     {
         $points = array();
-        foreach ($heartRates as $index => $heartRate) {
+        foreach ($elevations as $index => $elevation) {
             $point = new Point();
             $point->setTime(new \DateTime('+' . ($index * 5) . ' seconds'));
-            $point->setHeartRate($heartRate);
+            $point->setElevation($elevation);
             $points[] = $point;
         }
 
