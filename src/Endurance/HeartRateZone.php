@@ -4,10 +4,10 @@ namespace Endurance;
 
 class HeartRateZone
 {
-    private $name;
-    private $longName;
-    private $lowerLimit;
-    private $upperLimit;
+    protected $name;
+    protected $longName;
+    protected $lowerLimit;
+    protected $upperLimit;
 
     public function __construct($name, $longName, $lowerLimit, $upperLimit)
     {

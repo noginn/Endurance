@@ -4,7 +4,7 @@ namespace Endurance;
 
 class HeartRateZones
 {
-    private $zones = array();
+    protected $zones = array();
 
     public function __construct(array $zones)
     {
