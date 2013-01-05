@@ -43,8 +43,6 @@ Running the Tests
 
 ### Setup the vendor directory
 
-As some filesystem adapters use vendor libraries, you should install the vendors:
-
     $ cd endurance
     $ php composer.phar install --dev
 
