@@ -21,6 +21,7 @@ class HeartRateTSSMetric extends Metric
     {
         $metrics = array();
         foreach (array_keys($this->getZoneMultipliers()) as $zone) {
+            // Calculate the time in each of the heart rate zones
             $metrics[$zone] = new TimeInHeartRateZoneMetric(array('zone' => $zone));
         }
 
