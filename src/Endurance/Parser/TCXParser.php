@@ -61,14 +61,21 @@ class TCXParser extends Parser
     protected function parseTrack(Activity $activity, \SimpleXMLElement $trackNode)
     {
         foreach ($trackNode->Trackpoint as $trackpointNode) {
-            $activity->addPoint($this->parseTrackpoint($trackpointNode));
+            $point = $this->parseTrackpoint($trackpointNode);
+            if ($point) {
+                $activity->addPoint($point);
+            }
         }
     }
 
     protected function parseTrackpoint(\SimpleXMLElement $trackpointNode)
     {
-        $point = new Point();
+        // Skip the point if lat/lng not found
+        if (!isset($trackpointNode->Position->LatitudeDegrees) || !isset($trackpointNode->Position->LongitudeDegrees)) {
+            return;
+        }
 
+        $point = new Point();
         $point->setElevation((float) $trackpointNode->AltitudeMeters);
         $point->setDistance((float) $trackpointNode->DistanceMeters);
         $point->setLatitude((float) $trackpointNode->Position->LatitudeDegrees);
