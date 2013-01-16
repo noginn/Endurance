@@ -17,7 +17,8 @@ class TCXParserTest extends \PHPUnit_Framework_TestCase
 
     public function testParseReturnsActivityWithAllPoints()
     {
-        $this->assertEquals(1111, count($this->activity->getPoints()));
+        // There are actually 1111 points in the file but some are ignored as they are incomplete
+        $this->assertEquals(1108, count($this->activity->getPoints()));
     }
 
     public function testParseSetsPointElevation()
