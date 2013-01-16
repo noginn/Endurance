@@ -12,11 +12,13 @@ class MovingTimeMetric extends Metric
         $movingTime = $dependencies['elapsedTime'];
 
         $count = count($points);
-        $keys = array_keys($points);
-        for ($index = $keys[0] + 1; $index < $count; $index++) {
-            $interval = $points[$index]->getTimestamp() - $points[$index - 1]->getTimestamp();
-            if ($points[$index]->getSpeed() <= 1) {
-                $movingTime -= $interval;
+        if ($count > 0) {
+            $keys = array_keys($points);
+            for ($index = $keys[0] + 1; $index < $count; $index++) {
+                $interval = $points[$index]->getTimestamp() - $points[$index - 1]->getTimestamp();
+                if ($points[$index]->getSpeed() <= 1) {
+                    $movingTime -= $interval;
+                }
             }
         }
 
