@@ -21,7 +21,11 @@ class TimeInHeartRateZoneMetric extends Metric
         $lastIndex = $indexes[count($points) - 1];
         for ($index = $indexes[0] + 1; $index < $lastIndex; $index++) {
             if ($zone->inZone($points[$index]->getHeartRate())) {
-                $seconds += $points[$index]->getTimestamp() - $points[$index - 1]->getTimestamp();
+                $interval = $points[$index]->getTimestamp() - $points[$index - 1]->getTimestamp();
+                if ($interval < 10) {
+                    // Don't count time when paused
+                    $seconds += $interval;
+                }
             }
         }
 
