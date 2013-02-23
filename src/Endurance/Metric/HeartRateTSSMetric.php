@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance\Metric;
 
@@ -31,15 +31,15 @@ class HeartRateTSSMetric extends Metric
     private function getZoneMultipliers()
     {
         return array(
-            'Z1-' => 20, 
-            'Z1' => 30, 
-            'Z1+' => 40, 
-            'Z2-' => 50, 
-            'Z2+' => 60, 
-            'Z3' => 70, 
-            'Z4' => 80, 
-            'Z5a' => 100, 
-            'Z5b' => 120, 
+            'Z1-' => 20,
+            'Z1' => 30,
+            'Z1+' => 40,
+            'Z2-' => 50,
+            'Z2+' => 60,
+            'Z3' => 70,
+            'Z4' => 80,
+            'Z5a' => 100,
+            'Z5b' => 120,
             'Z5c' => 140
         );
     }

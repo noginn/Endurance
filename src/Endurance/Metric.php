@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance;
 
@@ -17,7 +17,7 @@ abstract class Metric
 
     /**
      * Returns a hash of the class name and options
-     * 
+     *
      * @return string
      */
     public function getHash()

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance\Metric;
 
@@ -20,7 +20,7 @@ class ElevationLossMetricTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(0, $this->metric->calculate(array(), $this->zones, array()));
     }
-    
+
     public function testCalculateReturnsCorrectValue()
     {
         // Down 100m, up 100m and down 100m again

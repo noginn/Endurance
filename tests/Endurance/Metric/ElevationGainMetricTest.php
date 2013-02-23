@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance\Metric;
 
@@ -20,7 +20,7 @@ class ElevationGainMetricTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(0, $this->metric->calculate(array(), $this->zones, array()));
     }
-    
+
     public function testCalculateReturnsCorrectValue()
     {
         // Up 100m, down 100m and up 100m again

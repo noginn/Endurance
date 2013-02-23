@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance\Parser;
 
@@ -41,8 +41,8 @@ class TCXParser extends Parser
 
     /**
      * Convert speed value from m/s to km/h
-     * 
-     * @param float $speed The speed in m/s
+     *
+     * @param  float $speed The speed in m/s
      * @return float The speed in km/h
      */
     protected function convertSpeed($speed)

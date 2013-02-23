@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance;
 
@@ -21,7 +21,7 @@ class HeartRateZone
     {
         return $this->name;
     }
-    
+
     public function getLongName()
     {
         return $this->longName;

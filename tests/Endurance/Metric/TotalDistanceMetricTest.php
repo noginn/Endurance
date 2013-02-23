@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance\Metric;
 
@@ -25,7 +25,7 @@ class TotalDistanceMetricTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(2, $this->metric->calculate($this->createPoints(array(2)), $this->zones, array()));
     }
-    
+
     public function testCalculateReturnsCorrectValueWhenStartingAtZero()
     {
         $this->assertEquals(100, $this->metric->calculate($this->createPoints(range(0,100)), $this->zones, array()));

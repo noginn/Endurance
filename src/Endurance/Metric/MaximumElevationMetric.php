@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance\Metric;
 
@@ -12,7 +12,7 @@ class MaximumElevationMetric extends Metric
         if (count($points) === 0) {
             return 0;
         }
-        
+
         return (int) max(array_map(function ($point) {
             return $point->getElevation();
         }, $points));

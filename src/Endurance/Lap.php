@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance;
 
@@ -6,14 +6,14 @@ class Lap
 {
     /**
      * The start index of the Activity points array
-     * 
+     *
      * @var int
      */
     protected $start;
 
     /**
      * The end index of the Activity points array
-     * 
+     *
      * @var int
      */
     protected $end;

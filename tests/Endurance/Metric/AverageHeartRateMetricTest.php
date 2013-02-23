@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance\Metric;
 
@@ -20,7 +20,7 @@ class AverageHeartRateMetricTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(0, $this->metric->calculate(array(), $this->zones, array()));
     }
-    
+
     public function testCalculateReturnsCorrectValue()
     {
         $points = $this->createPoints(range(100,200));

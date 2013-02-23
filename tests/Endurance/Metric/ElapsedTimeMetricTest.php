@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance\Metric;
 
@@ -20,7 +20,7 @@ class ElapsedTimeMetricTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(0, $this->metric->calculate(array(), $this->zones, array()));
     }
-    
+
     public function testCalculateReturnsCorrectValue()
     {
         $this->assertEquals(45, $this->metric->calculate($this->createPoints(10), $this->zones, array()));

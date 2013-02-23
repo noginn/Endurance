@@ -1,11 +1,10 @@
-<?php 
+<?php
 
 namespace Endurance\Metric;
 
 use Endurance\HeartRateZone;
 use Endurance\HeartRateZones;
 use Endurance\Metric;
-use Endurance\Point;
 
 class HeartRateTSSMetricTest extends \PHPUnit_Framework_TestCase
 {

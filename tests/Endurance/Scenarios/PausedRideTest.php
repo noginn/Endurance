@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance\Scenarios;
 
@@ -8,7 +8,6 @@ use Endurance\HeartRateZones;
 use Endurance\Metric\MovingTimeMetric;
 use Endurance\Metric\TimeInHeartRateZoneMetric;
 use Endurance\Parser\TCXParser;
-
 
 class PausedRideTest extends \PHPUnit_Framework_TestCase
 {

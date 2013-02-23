@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance\Metric;
 
@@ -20,7 +20,7 @@ class MaximumHeartRateMetricTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(0, $this->metric->calculate(array(), $this->zones, array()));
     }
-    
+
     public function testCalculateReturnsCorrectValue()
     {
         $this->assertEquals(100, $this->metric->calculate($this->createPoints(range(0,100)), $this->zones, array()));

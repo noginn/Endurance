@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance\Metric;
 
@@ -12,7 +12,7 @@ class TotalDistanceMetric extends Metric
         $count = count($points);
         if ($count === 0) {
             return 0;
-        } 
+        }
 
         $keys = array_keys($points);
         $start = $points[$keys[0]];

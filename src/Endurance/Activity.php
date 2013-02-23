@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance;
 
@@ -6,21 +6,21 @@ class Activity
 {
     /**
      * The time when the ride started
-     * 
+     *
      * @var \DateTime
      */
     protected $startTime;
 
     /**
      * Points
-     * 
+     *
      * @var array
      */
     protected $points = array();
 
     /**
      * Lap summaries
-     * 
+     *
      * @var array
      */
     protected $laps = array();

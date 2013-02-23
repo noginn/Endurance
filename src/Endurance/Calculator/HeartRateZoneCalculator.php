@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Endurance\Calculator;
 
@@ -10,8 +10,8 @@ class HeartRateZoneCalculator
     /**
      * Calculates the training zones based on the given lactate threshold
      * heart rate of the athlete.
-     * 
-     * @param int $threshold The lactate threshold heart rate
+     *
+     * @param  int            $threshold The lactate threshold heart rate
      * @return HeartRateZones
      */
     public function calculateZones($threshold)
@@ -30,8 +30,8 @@ class HeartRateZoneCalculator
     /**
      * Calculates the extended training zones based on the given lactate threshold
      * heart rate of the athelete. Used to calculate stress score.
-     * 
-     * @param int $threshold The lactate threshold heart rate
+     *
+     * @param  int            $threshold The lactate threshold heart rate
      * @return HeartRateZones
      */
     public function calculateExtendedZones($threshold)
