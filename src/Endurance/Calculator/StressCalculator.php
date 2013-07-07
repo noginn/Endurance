@@ -40,7 +40,7 @@ class StressCalculator
         $lastSTS = 0;
         $datePeriod = new \DatePeriod($startDate, new \DateInterval('P1D'), $endDate);
         foreach ($datePeriod as $date) {
-            $dateIndex = $date->format('Ymd');
+            $dateIndex = $date->format('Y-m-d');
 
             $stressValue = isset($stressValues[$dateIndex]) ? $stressValues[$dateIndex] : 0;
 
