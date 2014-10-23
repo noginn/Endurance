@@ -10,6 +10,9 @@
             "name": "Tom Graham"
         }
     ],
+    "require-dev": {
+        "phpunit/phpunit": "4.3.*"
+    },
     "require": {
         "php": ">=5.3.2"
     },
