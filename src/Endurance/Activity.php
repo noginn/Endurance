@@ -5,6 +5,13 @@ namespace Endurance;
 class Activity
 {
     /**
+     * The sport of the activity
+     *
+     * @var string
+     */
+    protected $sport;
+
+    /**
      * The time when the ride started
      *
      * @var \DateTime
@@ -24,6 +31,16 @@ class Activity
      * @var array
      */
     protected $laps = array();
+
+    public function setSport($sport)
+    {
+        $this->sport = $sport;
+    }
+
+    public function getSport()
+    {
+        return $this->sport;
+    }
 
     public function setStartTime(\DateTime $startTime)
     {

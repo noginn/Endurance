@@ -25,6 +25,7 @@ class TCXParser extends Parser
         // Just parse the first activity
         $activityNode = $xml->Activities->Activity[0];
         $activity->setStartTime(new \DateTime((string) $activityNode->Id));
+        $activity->setSport((string) $xml->Activities->Activity[0]->attributes()['Sport']);
 
         $laps = array();
         foreach ($activityNode->Lap as $lapNode) {
