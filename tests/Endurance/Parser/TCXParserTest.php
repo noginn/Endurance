@@ -46,6 +46,12 @@ class TCXParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(-1.1924629379064, $this->points[10]->getLongitude());
     }
 
+    public function testParseSetsPointCadence()
+    {
+        $this->assertEquals(42, $this->points[0]->getCadence());
+        $this->assertEquals(24, $this->points[1]->getCadence());
+    }
+
     public function testParseSetsPointTime()
     {
         $this->assertEquals('2012-11-09 17:25:01', $this->points[10]->getTime()->format('Y-m-d H:i:s'));

@@ -90,7 +90,10 @@ class TCXParser extends Parser
             $point->setSpeed($this->convertSpeed((float) $trackpointNode->Extensions->TPX->Speed));
         }
 
-        if (isset($trackpointNode->Extensions->TPX->RunCadence)) {
+        // can be at multiple places
+        if (isset($trackpointNode->Cadence)) {
+            $point->setCadence((int) $trackpointNode->Cadence);
+        } elseif (isset($trackpointNode->Extensions->TPX->RunCadence)) {
             $point->setCadence((int) $trackpointNode->Extensions->TPX->RunCadence);
         }
 

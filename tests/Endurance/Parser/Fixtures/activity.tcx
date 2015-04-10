@@ -34,6 +34,7 @@
             <HeartRateBpm>
               <Value>105</Value>
             </HeartRateBpm>
+            <Cadence>42</Cadence>
             <Extensions>
               <TPX xmlns="http://www.garmin.com/xmlschemas/ActivityExtension/v2">
                 <Speed>0.0</Speed>
@@ -54,6 +55,7 @@
             <Extensions>
               <TPX xmlns="http://www.garmin.com/xmlschemas/ActivityExtension/v2">
                 <Speed>0.0</Speed>
+                <RunCadence>24</RunCadence>
               </TPX>
             </Extensions>
           </Trackpoint>
