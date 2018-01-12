@@ -20,7 +20,14 @@ class TotalDistanceMetric extends Metric
             return $start->getDistance();
         }
 
-        $end = $points[$keys[count($keys) - 1]];
+        $keys_count = count($keys);
+        $end_index = 1;
+        $end = $points[$keys[$keys_count - $end_index]];
+
+        while ($end->getDistance() == 0 && $end_index < $keys_count) {
+            $end_index += 1;
+            $end = $points[$keys[$keys_count - $end_index]];
+        }
 
         return $end->getDistance() - $start->getDistance();
     }
