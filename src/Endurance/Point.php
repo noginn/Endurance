@@ -12,6 +12,7 @@ class Point
     public $speed;
     public $time;
     public $power;
+    public $cadence;
 
     public function __construct()
     {
@@ -86,6 +87,16 @@ class Point
     public function getPower()
     {
         return $this->power;
+    }
+
+    public function setCadence($cadence)
+    {
+        $this->cadence = (float) $cadence;
+    }
+
+    public function getCadence()
+    {
+        return $this->cadence;
     }
 
     public function setTime(\DateTime $time)

@@ -98,6 +98,10 @@ class TCXParser extends Parser
             }
         }
 
+        if (isset($trackpointNode->Cadence)){
+            $point->setCadence((float) $trackpointNode->Cadence);
+        }
+
         return $point;
     }
 }
