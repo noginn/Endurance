@@ -96,6 +96,9 @@ class TCXParser extends Parser
             if (isset($activityExtensionChildren->TPX->Watts)) {
                 $point->setPower((float) $activityExtensionChildren->TPX->Watts);
             }
+            if (isset($activityExtensionChildren->TPX->RunCadence)) {
+                $point->setCadence((float) $activityExtensionChildren->TPX->RunCadence);
+            }
         }
 
         if (isset($trackpointNode->Cadence)){
