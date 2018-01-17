@@ -15,6 +15,9 @@ class MinimumCadenceMetric extends Metric
 
         return (int) min(array_map(function ($point) {
             return $point->getCadence();
-        }, $points));
+        }, array_filter($points, function ($point)
+        {
+            return $point->getCadence() !== null && $point->getCadence() > 0;
+        })));
     }
 }
