@@ -2,7 +2,7 @@
 
 namespace Endurance\Parser;
 
-class TCXParserTest extends \PHPUnit_Framework_TestCase
+class TCXParserTest extends \PHPUnit\Framework\TestCase
 {
     public $parser;
     public $activity;

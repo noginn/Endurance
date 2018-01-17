@@ -6,7 +6,7 @@ use Endurance\HeartRateZone;
 use Endurance\HeartRateZones;
 use Endurance\Metric;
 
-class HeartRateTSSMetricTest extends \PHPUnit_Framework_TestCase
+class HeartRateTSSMetricTest extends \PHPUnit\Framework\TestCase
 {
     public $metric;
 

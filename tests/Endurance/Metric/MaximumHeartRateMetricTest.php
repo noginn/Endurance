@@ -6,7 +6,7 @@ use Endurance\HeartRateZones;
 use Endurance\Metric;
 use Endurance\Point;
 
-class MaximumHeartRateMetricTest extends \PHPUnit_Framework_TestCase
+class MaximumHeartRateMetricTest extends \PHPUnit\Framework\TestCase
 {
     public $metric;
 
