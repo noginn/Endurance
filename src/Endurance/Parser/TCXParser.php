@@ -76,8 +76,7 @@ class TCXParser extends Parser
         $point->setDistance((float) $trackpointNode->DistanceMeters);
 
         if (isset($trackpointNode->Position->LatitudeDegrees) &&
-            isset($trackpointNode->Position->LongitudeDegrees))
-        {
+            isset($trackpointNode->Position->LongitudeDegrees)) {
             $point->setLatitude((float) $trackpointNode->Position->LatitudeDegrees);
             $point->setLongitude((float) $trackpointNode->Position->LongitudeDegrees);
         }
@@ -90,6 +89,13 @@ class TCXParser extends Parser
 
         if (isset($trackpointNode->Extensions->TPX->Speed)) {
             $point->setSpeed($this->convertSpeed((float) $trackpointNode->Extensions->TPX->Speed));
+        } else if (count($activityExtensionChildren = $trackpointNode->Extensions->children('http://www.garmin.com/xmlschemas/ActivityExtension/v2')) > 0) {
+            if (isset($activityExtensionChildren->TPX->Speed)) {
+                $point->setSpeed($this->convertSpeed((float) $activityExtensionChildren->TPX->Speed));
+            }
+            if (isset($activityExtensionChildren->TPX->Watts)) {
+                $point->setPower((float) $activityExtensionChildren->TPX->Watts);
+            }
         }
 
         return $point;

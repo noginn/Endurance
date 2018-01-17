@@ -11,6 +11,7 @@ class Point
     public $longitude;
     public $speed;
     public $time;
+    public $power;
 
     public function __construct()
     {
@@ -75,6 +76,16 @@ class Point
     public function getSpeed()
     {
         return $this->speed;
+    }
+
+    public function setPower($power)
+    {
+        $this->power = (float) $power;
+    }
+
+    public function getPower()
+    {
+        return $this->power;
     }
 
     public function setTime(\DateTime $time)
