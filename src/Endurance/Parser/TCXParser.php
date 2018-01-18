@@ -87,21 +87,40 @@ class TCXParser extends Parser
             $point->setHeartRate((int) $trackpointNode->HeartRateBpm->Value);
         }
 
-        if (isset($trackpointNode->Extensions->TPX->Speed)) {
-            $point->setSpeed($this->convertSpeed((float) $trackpointNode->Extensions->TPX->Speed));
-        } else if (count($activityExtensionChildren = $trackpointNode->Extensions->children('http://www.garmin.com/xmlschemas/ActivityExtension/v2')) > 0) {
+        if ($trackpointNode->Extensions) {
+
+            $activityExtensionChildren = $trackpointNode->Extensions->children('http://www.garmin.com/xmlschemas/ActivityExtension/v2');
+
             if (isset($activityExtensionChildren->TPX->Speed)) {
                 $point->setSpeed($this->convertSpeed((float) $activityExtensionChildren->TPX->Speed));
             }
+
             if (isset($activityExtensionChildren->TPX->Watts)) {
                 $point->setPower((float) $activityExtensionChildren->TPX->Watts);
             }
+
             if (isset($activityExtensionChildren->TPX->RunCadence)) {
                 $point->setCadence((float) $activityExtensionChildren->TPX->RunCadence);
             }
+
+            if (isset($activityExtensionChildren->TPX)) {
+                $defaultExtensionChildren = $activityExtensionChildren->TPX->children('');
+
+                if (isset($defaultExtensionChildren->Speed)) {
+                    $point->setSpeed($this->convertSpeed((float) $defaultExtensionChildren->Speed));
+                }
+
+                if (isset($defaultExtensionChildren->Watts)) {
+                    $point->setPower((float) $defaultExtensionChildren->Watts);
+                }
+
+                if (isset($defaultExtensionChildren->RunCadence)) {
+                    $point->setCadence((float) $defaultExtensionChildren->RunCadence);
+                }
+            }
         }
 
-        if (isset($trackpointNode->Cadence)){
+        if (isset($trackpointNode->Cadence)) {
             $point->setCadence((float) $trackpointNode->Cadence);
         }
 
