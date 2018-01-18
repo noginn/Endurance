@@ -13,11 +13,18 @@ class MinimumCadenceMetric extends Metric
             return 0;
         }
 
-        return (int) min(array_map(function ($point) {
+        $cadences = array_map(function ($point) {
             return $point->getCadence();
-        }, array_filter($points, function ($point)
-        {
-            return $point->getCadence() !== null && $point->getCadence() > 0;
-        })));
+        }, $points);
+
+        if (count($cadences) == 0) {
+            return null;
+        }
+
+        $cadences = array_filter($cadences, function ($cadence) {
+            return $cadence !== null && $cadence > 0;
+        });
+
+        return (int) min($cadences);
     }
 }
