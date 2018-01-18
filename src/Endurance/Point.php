@@ -21,7 +21,7 @@ class Point
 
     public function setElevation($elevation)
     {
-        $this->elevation = (int) $elevation;
+        $this->elevation = (float) $elevation;
     }
 
     public function getElevation()
