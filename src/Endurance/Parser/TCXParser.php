@@ -54,7 +54,11 @@ class TCXParser extends Parser
     protected function parseLap(Activity $activity, \SimpleXMLElement $lapNode)
     {
         $startIndex = count($activity->getPoints());
-        $this->parseTrack($activity, $lapNode->Track);
+
+        foreach ($lapNode->Track as $trackNode)
+        {
+            $this->parseTrack($activity, $trackNode);
+        }
 
         return new Lap($startIndex, count($activity->getPoints()) - 1);
     }
