@@ -60,7 +60,15 @@ class TCXParser extends Parser
             $this->parseTrack($activity, $trackNode);
         }
 
-        return new Lap($startIndex, count($activity->getPoints()) - 1);
+        $lap = new Lap($startIndex, count($activity->getPoints()) - 1);
+
+        // Sometimes distance is only stored on the laps
+        if ($lapNode->DistanceMeters)
+        {
+            $lap->setDistance((float) $lapNode->DistanceMeters);
+        }
+
+        return $lap;
     }
 
     protected function parseTrack(Activity $activity, \SimpleXMLElement $trackNode)
