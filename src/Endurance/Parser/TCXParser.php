@@ -68,6 +68,11 @@ class TCXParser extends Parser
             $lap->setDistance((float) $lapNode->DistanceMeters);
         }
 
+        if (isset($lapNode->attributes()['StartTime']))
+        {
+            $lap->setStartTime(new \DateTime((string) $lapNode->attributes()['StartTime']));
+        }
+
         return $lap;
     }
 
@@ -100,7 +105,6 @@ class TCXParser extends Parser
         }
 
         if ($trackpointNode->Extensions) {
-
             $activityExtensionChildren = $trackpointNode->Extensions->children('http://www.garmin.com/xmlschemas/ActivityExtension/v2');
 
             if (isset($activityExtensionChildren->TPX->Speed)) {

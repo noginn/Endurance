@@ -46,6 +46,16 @@ class Lap
         return $this->end;
     }
 
+    public function setStartTime($startTime)
+    {
+        $this->startTime = $startTime;
+    }
+
+    public function getStartTime()
+    {
+        return $this->startTime;
+    }
+
     public function setDistance($distance)
     {
         $this->distance = (float) $distance;
