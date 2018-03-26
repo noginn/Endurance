@@ -5,30 +5,30 @@ namespace Endurance\Metric;
 use Endurance\HeartRateZones;
 use Endurance\Metric;
 
-class MovingTimeMetric extends Metric
+class TotalDescendingMetersMetric extends Metric
 {
     public function calculate(array $points, HeartRateZones $zones, array $dependencies)
     {
-        $movingTime = $dependencies['elapsedTime'];
+        $meters = 0;
 
         $count = count($points);
         if ($count > 0) {
             $keys = array_keys($points);
             for ($index = $keys[0] + 1; $index < $count; $index++) {
-                $interval = $points[$index]->getTimestamp() - $points[$index - 1]->getTimestamp();
-                if ($interval > 10 || ($points[$index]->getSpeed() != null && $points[$index]->getSpeed() <= 1)) {
-                    $movingTime -= $interval;
+                $descent = intval($points[$index]->getElevation()) - intval($points[$index - 1]->getElevation());
+
+                if ($descent >= 0) {
+                    $meters += $descent;
                 }
             }
         }
 
-        return $movingTime;
+        return $meters;
     }
 
     protected function loadDependencies()
     {
         return array(
-            'elapsedTime' => new ElapsedTimeMetric()
         );
     }
 }

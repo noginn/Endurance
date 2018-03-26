@@ -4,6 +4,8 @@ namespace Endurance;
 
 class Lap
 {
+    public $distance;
+
     /**
      * The start index of the Activity points array
      *
@@ -42,6 +44,26 @@ class Lap
     public function getEnd()
     {
         return $this->end;
+    }
+
+    public function setStartTime($startTime)
+    {
+        $this->startTime = $startTime;
+    }
+
+    public function getStartTime()
+    {
+        return $this->startTime;
+    }
+
+    public function setDistance($distance)
+    {
+        $this->distance = (float) $distance;
+    }
+
+    public function getDistance()
+    {
+        return $this->distance;
     }
 
     public function filterPoints(array $points)

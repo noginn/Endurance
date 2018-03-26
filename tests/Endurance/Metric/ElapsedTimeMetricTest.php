@@ -6,7 +6,7 @@ use Endurance\HeartRateZones;
 use Endurance\Metric;
 use Endurance\Point;
 
-class ElapsedTimeMetricTest extends \PHPUnit_Framework_TestCase
+class ElapsedTimeMetricTest extends \PHPUnit\Framework\TestCase
 {
     public $metric;
 

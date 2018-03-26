@@ -5,7 +5,7 @@ namespace Endurance\Metric;
 use Endurance\HeartRateZones;
 use Endurance\Metric;
 
-class AverageMovingSpeedMetricTest extends \PHPUnit_Framework_TestCase
+class AverageMovingSpeedMetricTest extends \PHPUnit\Framework\TestCase
 {
     public $metric;
 

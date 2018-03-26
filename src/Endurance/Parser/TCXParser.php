@@ -25,6 +25,7 @@ class TCXParser extends Parser
         // Just parse the first activity
         $activityNode = $xml->Activities->Activity[0];
         $activity->setStartTime(new \DateTime((string) $activityNode->Id));
+        $activity->setSport((string) $xml->Activities->Activity[0]->attributes()['Sport']);
 
         $laps = array();
         foreach ($activityNode->Lap as $lapNode) {
@@ -53,9 +54,26 @@ class TCXParser extends Parser
     protected function parseLap(Activity $activity, \SimpleXMLElement $lapNode)
     {
         $startIndex = count($activity->getPoints());
-        $this->parseTrack($activity, $lapNode->Track);
 
-        return new Lap($startIndex, count($activity->getPoints()) - 1);
+        foreach ($lapNode->Track as $trackNode)
+        {
+            $this->parseTrack($activity, $trackNode);
+        }
+
+        $lap = new Lap($startIndex, count($activity->getPoints()) - 1);
+
+        // Sometimes distance is only stored on the laps
+        if ($lapNode->DistanceMeters)
+        {
+            $lap->setDistance((float) $lapNode->DistanceMeters);
+        }
+
+        if (isset($lapNode->attributes()['StartTime']))
+        {
+            $lap->setStartTime(new \DateTime((string) $lapNode->attributes()['StartTime']));
+        }
+
+        return $lap;
     }
 
     protected function parseTrack(Activity $activity, \SimpleXMLElement $trackNode)
@@ -70,24 +88,56 @@ class TCXParser extends Parser
 
     protected function parseTrackpoint(\SimpleXMLElement $trackpointNode)
     {
-        // Skip the point if lat/lng not found
-        if (!isset($trackpointNode->Position->LatitudeDegrees) || !isset($trackpointNode->Position->LongitudeDegrees)) {
-            return;
-        }
-
         $point = new Point();
         $point->setElevation((float) $trackpointNode->AltitudeMeters);
         $point->setDistance((float) $trackpointNode->DistanceMeters);
-        $point->setLatitude((float) $trackpointNode->Position->LatitudeDegrees);
-        $point->setLongitude((float) $trackpointNode->Position->LongitudeDegrees);
+
+        if (isset($trackpointNode->Position->LatitudeDegrees) &&
+            isset($trackpointNode->Position->LongitudeDegrees)) {
+            $point->setLatitude((float) $trackpointNode->Position->LatitudeDegrees);
+            $point->setLongitude((float) $trackpointNode->Position->LongitudeDegrees);
+        }
+
         $point->getTime()->modify((string) $trackpointNode->Time);
 
         if (isset($trackpointNode->HeartRateBpm->Value)) {
             $point->setHeartRate((int) $trackpointNode->HeartRateBpm->Value);
         }
 
-        if (isset($trackpointNode->Extensions->TPX->Speed)) {
-            $point->setSpeed($this->convertSpeed((float) $trackpointNode->Extensions->TPX->Speed));
+        if ($trackpointNode->Extensions) {
+            $activityExtensionChildren = $trackpointNode->Extensions->children('http://www.garmin.com/xmlschemas/ActivityExtension/v2');
+
+            if (isset($activityExtensionChildren->TPX->Speed)) {
+                $point->setSpeed($this->convertSpeed((float) $activityExtensionChildren->TPX->Speed));
+            }
+
+            if (isset($activityExtensionChildren->TPX->Watts)) {
+                $point->setPower((float) $activityExtensionChildren->TPX->Watts);
+            }
+
+            if (isset($activityExtensionChildren->TPX->RunCadence)) {
+                $point->setCadence((float) $activityExtensionChildren->TPX->RunCadence);
+            }
+
+            if (isset($activityExtensionChildren->TPX)) {
+                $defaultExtensionChildren = $activityExtensionChildren->TPX->children('');
+
+                if (isset($defaultExtensionChildren->Speed)) {
+                    $point->setSpeed($this->convertSpeed((float) $defaultExtensionChildren->Speed));
+                }
+
+                if (isset($defaultExtensionChildren->Watts)) {
+                    $point->setPower((float) $defaultExtensionChildren->Watts);
+                }
+
+                if (isset($defaultExtensionChildren->RunCadence)) {
+                    $point->setCadence((float) $defaultExtensionChildren->RunCadence);
+                }
+            }
+        }
+
+        if (isset($trackpointNode->Cadence)) {
+            $point->setCadence((float) $trackpointNode->Cadence);
         }
 
         return $point;

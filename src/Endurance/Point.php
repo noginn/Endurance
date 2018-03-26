@@ -11,6 +11,8 @@ class Point
     public $longitude;
     public $speed;
     public $time;
+    public $power;
+    public $cadence;
 
     public function __construct()
     {
@@ -19,7 +21,7 @@ class Point
 
     public function setElevation($elevation)
     {
-        $this->elevation = (int) $elevation;
+        $this->elevation = (float) $elevation;
     }
 
     public function getElevation()
@@ -35,6 +37,29 @@ class Point
     public function getDistance()
     {
         return $this->distance;
+    }
+
+    public function calculateDistance($previousPoint)
+    {
+        if ($this->getLatitude() != null &&
+            $this->getLongitude() != null &&
+            $previousPoint->getLatitude() != null &&
+            $previousPoint->getLongitude() != null)
+        {
+            $R = 6371;
+
+            $latDistance  = ($previousPoint->getLatitude() - $this->getLatitude()) * M_PI / 180;
+            $longDistance = ($previousPoint->getLongitude() - $this->getLongitude()) * M_PI / 180;
+
+            $a = sin($latDistance / 2) * sin($latDistance / 2)
+                + cos($this->getLatitude() * M_PI / 180) * cos($previousPoint->getLatitude() * M_PI / 180)
+                * sin($longDistance / 2) * sin($longDistance / 2);
+
+            $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+            $distance = $R * $c * 1000; // in meters
+
+            $this->setDistance($previousPoint->getDistance() + $distance);
+        }
     }
 
     public function setHeartRate($heartrate)
@@ -75,6 +100,26 @@ class Point
     public function getSpeed()
     {
         return $this->speed;
+    }
+
+    public function setPower($power)
+    {
+        $this->power = (float) $power;
+    }
+
+    public function getPower()
+    {
+        return $this->power;
+    }
+
+    public function setCadence($cadence)
+    {
+        $this->cadence = (float) $cadence;
+    }
+
+    public function getCadence()
+    {
+        return $this->cadence;
     }
 
     public function setTime(\DateTime $time)

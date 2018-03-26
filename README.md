@@ -11,7 +11,7 @@ Usage
 ```php
 <?php
 
-use Endurance\TCXParser;
+use Endurance\Parser\TCXParser;
 
 $parser = new TCXParser();
 $activity = $parser->parse('/path/to/activity.tcx');
